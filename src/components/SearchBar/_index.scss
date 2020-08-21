@@ -1,0 +1,13 @@
+@import '../../style/main';
+
+.SearchBar {
+    height: 50px;
+    font-size: $default-fontSize;
+    border-radius: 5px;
+    border: none;
+    padding: 0 16px;
+}
+
+.SearchBar:focus {
+     outline:none;
+}
