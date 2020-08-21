@@ -1,0 +1,10 @@
+@import 'style/main';
+
+.App {
+  background-color: $background-color;
+  min-height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
