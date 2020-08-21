@@ -8,4 +8,13 @@
     border-radius: 5px;
     width: 100px;
     height: 50px;
+
+    &:hover {
+        cursor: pointer;
+        background-color: $btn-hover-color;
+    }
+
+    &:focus {
+        outline:none;
+    }
 }
