@@ -1,5 +1,17 @@
 @import '../../style/main';
 
 .Logo {
-    
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+
+    &__img {
+        width: 100px;
+    }
+
+    &__text {
+        color: $white;
+        font-size: $large-fontSize;
+    }
 }

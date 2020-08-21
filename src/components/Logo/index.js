@@ -4,7 +4,10 @@ import './_index.scss'
 import GithubLogo from '../../assets/images/github.png'
 
 const Logo = (props) => (
-    <img src={GithubLogo} alt="logo do Github" />
+    <div className="Logo">
+        <img src={GithubLogo} alt="Logo do Github" className="Logo__img"/>
+        <h2 className="Logo__text">Github Search</h2>
+    </div>
 );
 
 export default Logo;
