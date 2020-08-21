@@ -6,5 +6,21 @@
   display: flex;
   justify-content: center;
   align-items: center;
+  flex-direction: column;
+
+  &__logo {
+    margin-bottom: 50px;
+  }
+
+  &__search {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: row;
+
+    &__bar {
+      margin-right: 30px;
+    }
+  }
 }
 

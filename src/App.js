@@ -12,8 +12,12 @@ function App() {
         <Logo />
       </div>
       <div className="App__search">
-        <SearchBar placeholder="Digite o nome do usuário" />
-        <Button text="Buscar" />
+        <div className="App__search__bar">
+          <SearchBar placeholder="Digite o nome do usuário" />
+        </div>
+        <div className="App__search__button">
+          <Button text="Buscar" />
+        </div>
       </div>
     </div>
   );
