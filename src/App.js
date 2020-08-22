@@ -11,7 +11,7 @@ class App extends Component{
 
     this.state = {
       value: '',
-      data: {}
+      data: []
     }
 
     this.getUser = this.getUser.bind(this);
@@ -19,13 +19,23 @@ class App extends Component{
   }
 
   getUser() {
-    console.log('get user', this.state.value)
-    // Simple GET request using fetch
-    // fetch(`https://api.github.com/users/${value}/repos`)
-    //   .then(response => response.json())
-    //   .then(data => this.setState({ user: data }));
+    //GET request using fetch
+    fetch(`https://api.github.com/users/${this.state.value}/repos`)
+      .then(response => {
+        if (response.ok) return response.json();
+        throw new Error('Request failed.');
+      })
+      .then(result => {
+        this.setState({
+          data: result
+        });
+        console.log('data', this.state.data);
+      })
+      .catch(error => {
+        console.log('error', error)
+      });
   }
-
+ 
   handleChange = (e) => {
     this.setState({value: e.target.value});
   }
