@@ -1,6 +1,6 @@
 @import '../../style/main';
 
-.Logo {
+.Avatar {
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -12,6 +12,18 @@
 
     &__text {
         color: $white;
-        font-size: $large-fontSize;
     }
+}
+
+.text--default {
+    font-size: $default-fontSize;
+}
+.text--small {
+    font-size: $small-fontSize;
+}
+.text--medium {
+    font-size: $medium-fontSize;
+}
+.text--large {
+    font-size: $large-fontSize;
 }

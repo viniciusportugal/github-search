@@ -1,9 +1,12 @@
 import React, { Component } from 'react';
 import './App.scss';
 
-import Logo from './components/Logo'
+import Avatar from './components/Avatar'
 import SearchBar from './components/SearchBar'
 import Button from './components/Button'
+import Card from './components/Card'
+
+import GithubLogo from './assets/images/github.png'
 
 class App extends Component{
   constructor(){
@@ -11,7 +14,7 @@ class App extends Component{
 
     this.state = {
       value: '',
-      data: []
+      repos: []
     }
 
     this.getUser = this.getUser.bind(this);
@@ -27,9 +30,9 @@ class App extends Component{
       })
       .then(result => {
         this.setState({
-          data: result
+          repos: result
         });
-        console.log('data', this.state.data);
+        console.log('repos', this.state.repos);
       })
       .catch(error => {
         console.log('error', error)
@@ -44,7 +47,7 @@ class App extends Component{
     return (
       <div className="App">
         <div className="App__logo">
-          <Logo />
+          <Avatar src={GithubLogo} text="Github Search" textSize="large"/>
         </div>
         <div className="App__search">
           <div className="App__search__bar">
@@ -57,6 +60,17 @@ class App extends Component{
           <div className="App__search__button">
             <Button text="Buscar" onClick={this.getUser}/>
           </div>
+        </div>
+        <div className="App__result">
+          {
+            this.state.repos.map((repo) => (
+              <Card>
+                <p>{repo.owner.login}</p>
+                <img src={repo.owner.avatar_url} width="100px"/>
+                <p>{repo.name}</p>
+              </Card>
+            ))
+          }
         </div>
       </div>
     );
