@@ -17,30 +17,40 @@ class App extends Component{
 
     this.state = {
       value: '',
+      warningStatus: false,
       repos: [],
       loading: false,
-      errorStatus: false
+      errorStatus: null
     }
 
     this.getUser = this.getUser.bind(this);
     this.handleChange = this.handleChange.bind(this);
+    this.setInitialState = this.setInitialState.bind(this);
+    this.displayWarning = this.displayWarning.bind(this);
+  }
+
+  setInitialState() {
+    this.setState({
+      loading: true,
+      errorStatus: null,
+      value: '',
+    });
   }
 
   getUser() {
-    // setting loader
-    console.log('>>>', this.state.repos);
-    this.setState({loading: true});
+    // setting initial state to prevent empty repo array
+    this.setInitialState();
+
     //GET request using fetch
     fetch(`https://api.github.com/users/${this.state.value}/repos`)
       .then(response => {
         if (response.ok) {
-          console.log('entrou aqui');
           return response.json();
         } else {
           this.setState({
             errorStatus: response.status
           });
-          console.log('error', response.status);
+          return [];
         }
       })
       .then(result => {
@@ -58,6 +68,12 @@ class App extends Component{
     this.setState({value: e.target.value});
   }
 
+  displayWarning() {
+    this.setState(prevState => ({
+      warningStatus: !prevState.warningStatus
+    })); 
+  }
+
   render() {
     return (
       <div className="App">
@@ -68,18 +84,39 @@ class App extends Component{
           this.state.loading ? (
             <Loader />
           ) : (
-            <div className="App__search">
-              <div className="App__search__bar">
-                <SearchBar
-                  placeholder="Digite o nome do usuário"
-                  onChange={this.handleChange}
-                  value={this.props.value}
-                />
+            <>
+              <div className="App__search">
+                <div className="App__search__bar">
+                  <SearchBar
+                    placeholder="Digite o nome do usuário"
+                    onChange={this.handleChange}
+                    value={this.props.value}
+                  />
+                </div>
+                <div className="App__search__button">
+                  <Button
+                    text="Buscar"
+                    onClick={
+                      this.state.value !== null
+                      && this.state.value !== ''
+                      ? this.getUser
+                      : this.displayWarning
+                    }
+                    disabled={
+                      this.state.value !== null
+                      && this.state.value !== ''
+                      ? ''
+                      : 'disabled'
+                    }
+                  />
+                </div>
               </div>
-              <div className="App__search__button">
-                <Button text="Buscar" onClick={this.getUser} />
-              </div>
-            </div>
+              {
+                this.state.warningStatus ? (
+                  <p className="App__search__warning">Você precisa digitar um nome de usuário.</p>
+                ) : null
+              }
+            </>
           )
         }
         <div className="App__result">
@@ -99,12 +136,14 @@ class App extends Component{
                           rounded
                         />
                       </div>
-                      <Repository
-                        name={repo.name}
-                        description={repo.description}
-                        stars="6"
-                        url={repo.html_url}
-                      />
+                      <div className="App__result__repository">
+                        <Repository
+                          name={repo.name}
+                          description={repo.description}
+                          stars="6"
+                          url={repo.html_url}
+                        />
+                      </div>
                     </Card>
                   </div>
                 ))
