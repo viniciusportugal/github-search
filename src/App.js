@@ -6,6 +6,7 @@ import SearchBar from './components/SearchBar'
 import Button from './components/Button'
 import Card from './components/Card'
 import Repository from './components/Repository'
+import Loader from './components/Loader'
 
 import GithubLogo from './assets/images/github.png'
 
@@ -15,7 +16,8 @@ class App extends Component{
 
     this.state = {
       value: '',
-      repos: []
+      repos: [],
+      loading: false
     }
 
     this.getUser = this.getUser.bind(this);
@@ -23,6 +25,8 @@ class App extends Component{
   }
 
   getUser() {
+    // setting loader
+    this.setState({loading: true});
     //GET request using fetch
     fetch(`https://api.github.com/users/${this.state.value}/repos`)
       .then(response => {
@@ -31,9 +35,9 @@ class App extends Component{
       })
       .then(result => {
         this.setState({
+          loading: false,
           repos: result
         });
-        console.log('repos', this.state.repos);
       })
       .catch(error => {
         console.log('error', error)
@@ -50,22 +54,28 @@ class App extends Component{
         <div className="App__logo">
           <Avatar src={GithubLogo} text="Github Search" textSize="large" textColor="white"/>
         </div>
-        <div className="App__search">
-          <div className="App__search__bar">
-            <SearchBar
-              placeholder="Digite o nome do usuário"
-              onChange={this.handleChange}
-              value={this.props.value}
-            />
-          </div>
-          <div className="App__search__button">
-            <Button text="Buscar" onClick={this.getUser}/>
-          </div>
-        </div>
+        {
+          this.state.loading ? (
+            <Loader />
+          ) : (
+            <div className="App__search">
+              <div className="App__search__bar">
+                <SearchBar
+                  placeholder="Digite o nome do usuário"
+                  onChange={this.handleChange}
+                  value={this.props.value}
+                />
+              </div>
+              <div className="App__search__button">
+                <Button text="Buscar" onClick={this.getUser} />
+              </div>
+            </div>
+          )
+        }
         <div className="App__result">
           {
             this.state.repos.map((repo) => (
-              <div className="App__result__container">
+              <div className="App__result__container" key={`key-${repo.name}`}>
                 <Card>
                   <div className="App__result__avatar">
                     <Avatar
@@ -78,6 +88,7 @@ class App extends Component{
                   </div>
                   <Repository
                     name={repo.name}
+                    description={repo.description}
                     stars="6"
                     url={repo.html_url}
                   />
