@@ -11,7 +11,7 @@
     }
 
     &__text {
-        color: $white;
+        margin: 30px 0 0 0
     }
 }
 
@@ -26,4 +26,15 @@
 }
 .text--large {
     font-size: $large-fontSize;
+}
+
+.text--white {
+    color: $white;
+}
+.text--grey {
+    color: $grey
+}
+
+.img--rounded {
+    border-radius: 100%;
 }

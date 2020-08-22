@@ -9,10 +9,11 @@
   flex-direction: column;
 
   &__logo {
-    margin-bottom: 50px;
+    margin: 50px 0;
   }
 
   &__search {
+    width: 450px;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -24,7 +25,21 @@
   }
 
   &__result {
-    margin-bottom: 100px;
+    margin: 100px 0;
+    width: 450px;
+
+    &__container{
+      width: 100%;
+      margin-top: 30px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      flex-direction: row;
+    }
+
+    &__avatar {
+      margin-right: 30px;
+    }
   }
 }
 

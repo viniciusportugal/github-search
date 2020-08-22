@@ -5,6 +5,7 @@ import Avatar from './components/Avatar'
 import SearchBar from './components/SearchBar'
 import Button from './components/Button'
 import Card from './components/Card'
+import Repository from './components/Repository'
 
 import GithubLogo from './assets/images/github.png'
 
@@ -47,7 +48,7 @@ class App extends Component{
     return (
       <div className="App">
         <div className="App__logo">
-          <Avatar src={GithubLogo} text="Github Search" textSize="large"/>
+          <Avatar src={GithubLogo} text="Github Search" textSize="large" textColor="white"/>
         </div>
         <div className="App__search">
           <div className="App__search__bar">
@@ -64,11 +65,23 @@ class App extends Component{
         <div className="App__result">
           {
             this.state.repos.map((repo) => (
-              <Card>
-                <p>{repo.owner.login}</p>
-                <img src={repo.owner.avatar_url} width="100px"/>
-                <p>{repo.name}</p>
-              </Card>
+              <div className="App__result__container">
+                <Card>
+                  <div className="App__result__avatar">
+                    <Avatar
+                      src={repo.owner.avatar_url}
+                      text={repo.owner.login}
+                      textSize="small"
+                      textColor="grey"
+                      rounded
+                    />
+                  </div>
+                  <Repository
+                    name={repo.name}
+                    stars="6"
+                  />
+                </Card>
+              </div>
             ))
           }
         </div>

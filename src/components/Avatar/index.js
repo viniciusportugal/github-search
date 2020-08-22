@@ -3,10 +3,18 @@ import './_index.scss'
 
 const Avatar = (props) => (
     <div className="Avatar">
-        <img src={props.src} alt="Logo do Github" className="Avatar__img"/>
+        <img
+            src={props.src}
+            alt="Logo do Github"
+            className={`Avatar__img img--${props.rounded ? 'rounded' : ''}`}
+        />
         {
             props.text ? (
-                <h2 className={`Avatar__text text--${props.textSize}`}>{props.text}</h2>
+                <p
+                    className={`Avatar__text text--${props.textSize} text--${props.textColor}`}
+                >
+                    {props.text}
+                </p>
             ) : null
         }
     </div>
