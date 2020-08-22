@@ -11,6 +11,11 @@
     align-items: center;
     flex-direction: row;
 
+    &__description {
+        font-size: $smallest-fontSize;
+        color: $light-grey;
+    }
+
     &__stars{
         display: flex;
         justify-content: center;
