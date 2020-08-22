@@ -13,3 +13,11 @@
     flex-direction: row;
     padding: 15px 30px
 }
+
+// responsive
+@media (max-width: $breakpoint-phone) {
+    .Card {
+        min-height: 400px;
+        flex-direction: column;
+    }
+}
