@@ -44,7 +44,12 @@
 
     &__avatar {
       margin-right: 30px;
+      width: 30%;
     }
+
+    &__repository {
+        width: 70%
+      }
   }
 }
 
@@ -67,10 +72,13 @@
 
       &__avatar {
         margin-right: 0;
+        width: 100%;
       }
 
       &__repository {
         margin-top: 30px;
+        width: 100%;
+        text-align: center;
       }
     }
   }

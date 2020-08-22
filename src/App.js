@@ -140,7 +140,7 @@ class App extends Component{
                         <Repository
                           name={repo.name}
                           description={repo.description}
-                          stars="6"
+                          stars={repo.stargazers_count}
                           url={repo.html_url}
                         />
                       </div>

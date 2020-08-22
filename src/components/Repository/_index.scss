@@ -5,11 +5,15 @@
     color: $grey;
     font-size: $small-fontSize;
     width: 100%;
-    height: 50px;
+    min-height: 50px;
     display: flex;
     justify-content: space-between;
     align-items: center;
     flex-direction: row;
+
+    &__name {
+        word-break: break-all;
+    }
 
     &__description {
         font-size: $smallest-fontSize;
@@ -34,5 +38,10 @@
 @media (max-width: $breakpoint-phone) {
     .Repository {
         flex-direction: column;
+        height: auto;
+
+        &__stars {
+            margin-left: 0;
+        }
     }
 }
