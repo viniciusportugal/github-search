@@ -79,6 +79,7 @@ class App extends Component{
                   <Repository
                     name={repo.name}
                     stars="6"
+                    url={repo.html_url}
                   />
                 </Card>
               </div>

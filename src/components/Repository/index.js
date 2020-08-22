@@ -5,7 +5,9 @@ import './_index.scss'
 const Repository = (props) => (
     <div className="Repository">
         <div className="Repository__name">
-            <p>{props.name}</p>
+            <a href={props.url} target="_blank">
+                <p>{props.name}</p>
+            </a>
         </div>
         <div className="Repository__stars">
             <img src={StarIcon} alt="ícone de estrela" className="Repository__stars__icon" />
