@@ -23,6 +23,10 @@
       margin-right: 30px;
       width: 90%;
     }
+
+    &__warning {
+      color: $white
+    }
   }
 
   &__result {
@@ -40,6 +44,34 @@
 
     &__avatar {
       margin-right: 30px;
+    }
+  }
+}
+
+// responsive
+@media (max-width: $breakpoint-phone) {
+  .App {
+    &__search {
+      width: 350px;
+      flex-direction: column;
+
+      &__bar {
+        margin-right: 0;
+        margin-bottom: 30px;
+        width: 350px;
+      }
+    }
+
+    &__result {
+      width: 350px;
+
+      &__avatar {
+        margin-right: 0;
+      }
+
+      &__repository {
+        margin-top: 30px;
+      }
     }
   }
 }

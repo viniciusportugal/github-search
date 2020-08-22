@@ -29,3 +29,10 @@
         }
     }
 }
+
+// responsive
+@media (max-width: $breakpoint-phone) {
+    .Repository {
+        flex-direction: column;
+    }
+}
