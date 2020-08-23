@@ -1,7 +1,7 @@
 import React from 'react'
 import './_index.scss'
 
-const Loader = (props) => (
+const Loader = () => (
     <div className="Loader"></div>
 );
 
