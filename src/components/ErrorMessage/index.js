@@ -19,13 +19,14 @@ const ErrorMessage = (props) => (
                 src={props.error === 404 ? notFound.icon : generalError.icon}
                 alt="ícone que representa o erro"
                 className="ErrorMessage__header__icon"
+                data-testid="ErrorMessage-icon"
             />
-            <p className="ErrorMessage__header__title">
+            <p className="ErrorMessage__header__title" data-testid="ErrorMessage-title">
                 {props.error === 404 ? notFound.title : generalError.title}
             </p>
         </div>
         <div className="ErrorMessage__body">
-            <p className="ErrorMessage__body__message">
+            <p className="ErrorMessage__body__message" data-testid="ErrorMessage-message">
                 {props.error === 404 ? notFound.message : generalError.message}
             </p>
         </div>
