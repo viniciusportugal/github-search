@@ -19,6 +19,7 @@ class App extends Component{
       value: '',
       warningStatus: false,
       repos: [],
+      userHasNoRepos: false,
       loading: false,
       errorStatus: null
     }
@@ -33,6 +34,7 @@ class App extends Component{
     this.setState({
       loading: true,
       errorStatus: null,
+      userHasNoRepos: false,
       value: '',
     });
   }
@@ -54,6 +56,12 @@ class App extends Component{
         }
       })
       .then(result => {
+        console.log('esse result', result);
+        if (result.length === 0) {
+          this.setState({
+            userHasNoRepos: true
+          })
+        }
         this.setState({
           loading: false,
           repos: result
@@ -121,9 +129,12 @@ class App extends Component{
         }
         <div className="App__result">
           {
-            this.state.errorStatus ? (
-              <ErrorMessage error={this.state.errorStatus} />
-            ) : (
+            this.state.errorStatus ? <ErrorMessage error={this.state.errorStatus} /> : (
+              this.state.userHasNoRepos ? (
+                <p className="App__search__warning">
+                  Ops! parece que usuário ainda não possui nenhum repositório.
+                </p>
+                ) : (
                 this.state.repos.map((repo) => (
                   <div className="App__result__container" key={`key-${repo.name}`}>
                     <Card>
@@ -147,6 +158,7 @@ class App extends Component{
                     </Card>
                   </div>
                 ))
+              )
             )
           }
         </div>
