@@ -37,7 +37,7 @@ npm install
 
 or
 
-yarn install
+yarn
 ```
 
 After this steps, the application is ready to run.
